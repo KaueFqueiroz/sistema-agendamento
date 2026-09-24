@@ -16,7 +16,6 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomeEmpresa;
-    private String servico;
     private String horarioAbertura;
     private String horarioFechamento;
     private String chavePix;

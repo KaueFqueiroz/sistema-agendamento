@@ -2,6 +2,7 @@ package dev.kaue.scheduling_system.service;
 
 import dev.kaue.scheduling_system.exception.HorarioIndisponivelException;
 import dev.kaue.scheduling_system.model.Agendamento;
+import dev.kaue.scheduling_system.model.StatusAgendamento;
 import dev.kaue.scheduling_system.repository.AgendamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,8 @@ public class AgendamentoService {
 
     public Agendamento cadastrarAgendamento(Agendamento novoAgendamento){
        verificarDisponibilidadeAgendamento(novoAgendamento);
+
+       novoAgendamento.setStatus(StatusAgendamento.PENDENTE_PAGAMENTO);
 
        Agendamento agendamento = agendamentoRepository.save(novoAgendamento);
 

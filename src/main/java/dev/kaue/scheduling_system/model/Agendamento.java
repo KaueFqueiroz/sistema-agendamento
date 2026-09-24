@@ -30,7 +30,7 @@ public class Agendamento {
     private Servico servico;
 
     @Enumerated(EnumType.STRING)
-    private StatusAgendamento statusAgendamento;
+    private StatusAgendamento status;
 
 }
 

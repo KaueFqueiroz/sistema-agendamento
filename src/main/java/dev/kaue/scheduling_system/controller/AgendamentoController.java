@@ -51,7 +51,8 @@ public class AgendamentoController {
                 agendamentoSalvo.getCliente().getNomeCliente(),
                 agendamentoSalvo.getServico().getNomeServico(),
                 agendamentoSalvo.getServico().getPreco(),
-                agendamentoSalvo.getDataHoraAgendada()
+                agendamentoSalvo.getDataHoraAgendada(),
+                agendamentoSalvo.getStatus()
         );
     }
 
