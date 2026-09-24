@@ -29,5 +29,8 @@ public class Agendamento {
     @JoinColumn(name = "servico_id")
     private Servico servico;
 
+    @Enumerated(EnumType.STRING)
+    private StatusAgendamento statusAgendamento;
+
 }
 

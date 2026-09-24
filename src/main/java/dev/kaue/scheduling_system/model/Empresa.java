@@ -19,4 +19,5 @@ public class Empresa {
     private String servico;
     private String horarioAbertura;
     private String horarioFechamento;
+    private String chavePix;
 }
