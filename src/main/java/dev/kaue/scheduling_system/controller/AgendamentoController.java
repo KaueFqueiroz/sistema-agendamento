@@ -37,7 +37,7 @@ public class AgendamentoController {
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 
         Servico servico = servicoRepository.findById(requestDTO.servicoId())
-                .orElseThrow(() -> new RuntimeException("Serviõ não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Serviço não encontrado"));
 
         Agendamento agendamento = new Agendamento();
         agendamento.setCliente(cliente);
