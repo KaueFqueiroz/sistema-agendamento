@@ -4,6 +4,7 @@ package dev.kaue.scheduling_system.controller;
 
 import dev.kaue.scheduling_system.dto.AgendamentoResponseDTO;
 import dev.kaue.scheduling_system.dto.AgendamentoRequestDTO;
+import dev.kaue.scheduling_system.exception.RecursoNaoEncontradoException;
 import dev.kaue.scheduling_system.model.Agendamento;
 import dev.kaue.scheduling_system.model.Cliente;
 import dev.kaue.scheduling_system.model.Empresa;
@@ -46,10 +47,10 @@ public class AgendamentoController {
     @PostMapping
     public AgendamentoResponseDTO criarAgendamento(@RequestBody AgendamentoRequestDTO requestDTO){
         Cliente cliente = clienteRepository.findById(requestDTO.clienteId())
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Cliente não encontrado"));
 
         Servico servico = servicoRepository.findById(requestDTO.servicoId())
-                .orElseThrow(() -> new RuntimeException("Serviço não encontrado"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Serviço não encontrado"));
 
         Agendamento agendamento = new Agendamento();
         agendamento.setCliente(cliente);
@@ -71,7 +72,7 @@ public class AgendamentoController {
     @GetMapping("/{empresaId}")
     public List<AgendamentoResponseDTO> listarAgendamentoPorEmpresa(@PathVariable Long empresaId){
         Empresa empresa = empresaRepository.findById(empresaId)
-                .orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Empresa não encontrada"));
 
         List<Agendamento> agendamentos = agendamentoRepository.findByServico_Empresa(empresa);
 

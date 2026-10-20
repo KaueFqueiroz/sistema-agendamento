@@ -3,6 +3,7 @@ package dev.kaue.scheduling_system.controller;
 
 import dev.kaue.scheduling_system.dto.ServicoRequestDTO;
 import dev.kaue.scheduling_system.dto.ServicoResponseDTO;
+import dev.kaue.scheduling_system.exception.RecursoNaoEncontradoException;
 import dev.kaue.scheduling_system.model.Empresa;
 import dev.kaue.scheduling_system.model.Servico;
 import dev.kaue.scheduling_system.repository.EmpresaRepository;
@@ -33,7 +34,7 @@ public class ServicoController {
     public ServicoResponseDTO criarServico(@RequestBody ServicoRequestDTO requestDTO){
 
         Empresa empresa = empresaRepository.findById(requestDTO.empresaId())
-                .orElseThrow(() -> new RuntimeException("Empresa não encontrado"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Empresa não encontrado"));
 
         Servico servico = new Servico();
         servico.setNomeServico(requestDTO.nomeServico());
