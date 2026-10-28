@@ -28,7 +28,7 @@ public class AgendamentoService {
             LocalDateTime inicioNovo = novoAgendamento.getDataHoraAgendada();
             LocalDateTime fimNovo = inicioNovo.plusMinutes(novoAgendamento.getServico().getDuracaoServicoMinutos());
 
-            boolean semConflito = fimExistente.isBefore(inicioNovo) || fimNovo.isBefore(inicioExistente);  // inicioNovo comçea depois do fimExistente
+            boolean semConflito = !fimExistente.isAfter(inicioNovo) || !fimNovo.isAfter(inicioExistente);
 
 
             if (!semConflito){

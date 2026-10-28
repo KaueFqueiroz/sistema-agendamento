@@ -26,7 +26,7 @@ public class ClienteController {
     public ClienteResponseDTO criarCliente(@RequestBody ClienteRequestDTO requestDTO){
 
         Cliente cliente = new Cliente();
-        cliente.setNomeCliente(requestDTO.nomeCLiente());
+        cliente.setNomeCliente(requestDTO.nomeCliente());
 
         Cliente clienteSalvo = clienteRepository.save(cliente);
 

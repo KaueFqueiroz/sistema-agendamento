@@ -4,6 +4,7 @@ package dev.kaue.scheduling_system.controller;
 
 import dev.kaue.scheduling_system.dto.AgendamentoResponseDTO;
 import dev.kaue.scheduling_system.dto.AgendamentoRequestDTO;
+import dev.kaue.scheduling_system.dto.ErroResponseDTO;
 import dev.kaue.scheduling_system.exception.RecursoNaoEncontradoException;
 import dev.kaue.scheduling_system.model.Agendamento;
 import dev.kaue.scheduling_system.model.Cliente;
@@ -15,6 +16,9 @@ import dev.kaue.scheduling_system.repository.EmpresaRepository;
 import dev.kaue.scheduling_system.repository.ServicoRepository;
 import dev.kaue.scheduling_system.service.AgendamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -91,6 +95,15 @@ public class AgendamentoController {
             listaAgendamentos.add(dto);
         }
         return listaAgendamentos;
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ErroResponseDTO> tratarJsonInvalido(HttpMessageNotReadableException ex) {
+        ErroResponseDTO erro = new ErroResponseDTO(
+                HttpStatus.BAD_REQUEST.value(),
+                "Corpo da requisição inválido"
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
     }
 
 
